@@ -1,0 +1,1 @@
+FEE = 150.0 #Convinience fees for gomaruf.com######
