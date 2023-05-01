@@ -28,13 +28,15 @@ DEBUG = True
 
 ALLOWED_HOSTS = [
     '127.0.0.1',
-    'flight-web-app.herokuapp.com',
+    #'flight-web-app.herokuapp.com',
 ]
 
 
 # Application definition
 
 INSTALLED_APPS = [
+    #'jazzmin',
+    'admin_soft.apps.AdminSoftDashboardConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -43,6 +45,11 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'flight'
 ]
+# JAZZMIN_UI_TWEAKS = {
+    
+#     "theme": "default",
+#     "dark_mode_theme": "darkly",
+# }
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

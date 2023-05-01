@@ -34,15 +34,11 @@
         <ul class="navbar-nav mr-auto">
           <li class="nav-item {% if not page %}active{% endif %}">
             <a class="nav-link" href="{% url 'index' %}">Home</a>
-          </li>
-          <li class="nav-item {% if page == 'bookings' %}active{% endif %}">
-            <a class="nav-link" href="{% url 'bookings' %}">My Bookings</a>
-            
-          </li>
-          
+          </li>          
           
         </ul>
         <ul class="navbar-nav">
+          
           {% if not user.is_authenticated %}
             <li class="nav-item">
               <button class="btn btn-outline-danger" style="border-radius: 25rem;" onclick="window.location.href = '/login';">
@@ -52,15 +48,21 @@
                 Login
               </button>
             </li>
+            
           {% else %}
-
-          
-          <p> Welcome, User/ {{user.username}} </p> <!--iT'S FOR USERNAME CALLED IN DASHBOARD-->
+          <li class="nav-item {% if page == 'bookings' %}active{% endif %}">
+            <a class="nav-link" href="{% url 'bookings' %}">My Bookings</a>
+          </li> 
+      </div>
+        
+        
+          <p> Welcome, User/ {{user.first_name}} {{user.last_name}}</p> <!--iT'S FOR USERNAME CALLED IN DASHBOARD-->
             <li class="nav-item dropdown my-account">
               
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 My Account 
               </a>
+              
               <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                 <div class="dropdown-header" style="display: flex; padding: .5rem 1.2rem">
                   <div>
@@ -74,6 +76,7 @@
                       {{user.first_name}} {{user.last_name}}
                   </div>
                 </div>
+                
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="{% url 'logout' %}">
                   <span>
@@ -84,14 +87,17 @@
                   Log out
                 </a>
                 
-              </div>
               
             </li>
+            
+          </div>
+          
           {% endif %}
+          
         </ul>
-      </div>
+      
     </nav>
-
+    
     <main>
       {% block body %}{% endblock %}
     </main>
@@ -99,7 +105,9 @@
 
 
 -----
----<div id="nav_left_m" style="overflow: auto; max-width: 715px;  margin: 0 auto; text-align: center; background-color: #fff; margin-top: 40px;">
+---
+{% comment %} <section>
+<div id="nav_left_m" style="overflow: auto; max-width: 715px;  margin: 0 auto; text-align: center; background-color: #fff; margin-top: 40px;">
 
   <div class="btnFlights side-category-item flex-grow-1 active" onclick="sideNavClicked('Flights');" style="padding:5px;">
       <span style="color: rgb(25, 103, 210); fill: currentcolor; padding-bottom: 0px; margin-bottom: 6px; padding-top: 6px;">
@@ -165,6 +173,7 @@
   </div>
 
 </div>
+</section> {% endcomment %}
 
     <footer>
       <div class="container">
@@ -184,8 +193,8 @@
               </div>
             </div>
             <div class="quote-container">
-              <div class="quote">“Surround yourself with people that are smarter than you, give them everything they need to grow, and your business will thrive.”</div>
-              <div class="quote-by">- Richard Branson</div>
+              <div class="quote">“Bangladesh, to the east of India on the Bay of Bengal, is a South Asian country marked by lush greenery and many waterways. Its Padma (Ganges), Meghna and Jamuna rivers create fertile plains, and travel by boat is common. On the southern coast, the Sundarbans, an enormous mangrove forest shared with Eastern India, is home to the royal Bengal tiger.”</div>
+              <div class="quote-by">- Md Maruf E Miskat</div>
             </div>
           </div>
           <div class="social-links">

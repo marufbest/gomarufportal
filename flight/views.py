@@ -4,6 +4,11 @@ from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth import authenticate, login, logout
 
+#from nazmul sir#
+from django.db.models import Sum,Count
+from django.http import JsonResponse
+#from namzul sir end#
+
 from datetime import datetime
 import math
 from .models import *
@@ -65,7 +70,7 @@ def index(request):
             'min_date': min_date,
             'max_date': max_date
         })
-
+#login function work starts here
 def login_view(request):
     if request.method == "POST":
         username = request.POST["username"]
@@ -75,8 +80,10 @@ def login_view(request):
             login(request, user)
             return HttpResponseRedirect(reverse("index"))
             
-        else:
+        else: #funcation work here if user not exist in database then show below sms
+           
             return render(request, "flight/login.html", {
+                
                 "message": "Invalid username and/or password."
             })
     else:
@@ -471,3 +478,71 @@ def terms_and_conditions(request):
 
 def about_us(request):
     return render(request, 'flight/about.html')
+
+def fvalid(request):
+    return render(request, 'flight/fvalid.html')
+
+# def piechart(request):
+#     return render(request, 'flight/piechart.html')
+
+#from nazmul sir#
+
+
+def group_by_data(request):
+    querysets = Flight.objects.values('origin').annotate(num=Count('plane')).all()
+    print(querysets)
+    return render(request, 'flight/piechart.html')
+
+
+def piechart(request):
+    labels = []
+    data = []
+    querysets = Flight.objects.values('origin').annotate(num=Count('plane')).all()
+    #queryset = Flight.objects.values('destination').annotate(total_city=Sum('first_fare'))[:5]
+    print ('in', querysets)
+    for place in querysets:
+        labels.append(place['origin'])
+        data.append(place['num'])
+
+        print ('in', querysets)
+    return render(request, 'flight/dashboard.html', {'labels': labels,'data': data,})
+
+def admindash(request):
+
+    return render(request, 'flight/dashboard.html',)
+
+def error(request):
+
+    return render(request, 'flight/adminboard/404.html',)
+
+def charts(request):
+
+    return render(request, 'flight/charts.html',)
+
+# def bar_chart(request):
+#     labels = []
+#     data = []
+
+#     queryset = User.objects.values('city').annotate(num_employee=Count('city')).all()
+#     for emp in queryset:
+#         labels.append(emp['airport'])
+#         data.append(emp['total'])
+    
+#     return JsonResponse(data={'labels': labels, 'data': data, })    
+
+# def showchart(request):
+#     return render(request,"stud/bar_chart.html",{'title':'Bar Chart'})
+
+# def group_by_dept(request):
+   
+#     #queryset = City.objects.values('country__name').annotate(country_population=Sum('population')).order_by('-country_population')
+#     #querysets = Employee.objects.values('department__name').annotate(department_salary=Sum('salary')).order_by('-department_salary')
+#     #querysets = Employee.objects.values('department__name').annotate(department_salary=Sum('salary')).order_by('-department_salary')
+#     querysets = User.objects.values('airport').annotate(num_employee=Count('user')).all()
+    
+#     return render(request,'stud/group_by_dept.html',{ 'querysets':querysets })    
+
+# #    
+
+# def test_chart(request):
+#     return render(request,'flight/testchart.html',{})    

@@ -20,4 +20,15 @@ urlpatterns = [
     path('privacy-policy', views.privacy_policy, name="privacypolicy"),
     path('terms-and-conditions', views.terms_and_conditions, name="termsandconditions"),
     path('about-us', views.about_us, name="aboutus"),
+    path('valid', views.fvalid, name="fvalid"),
+    path("login", views.login_view, name="login"),
+    #from nazmul sir#
+    path('admindash/', views.admindash, name='admindash'),
+
+    path('error/', views.error, name='error'),
+    path('charts/', views.charts, name='charts'),
+    path('piechart/', views.piechart, name='piechart'),
+    # path('bar-chart/', views.bar_chart, name='bar-chart'),
+    # path('showchart/', views.showchart, name='showbarchart'),
+    # path('group_by_dept/', views.group_by_dept, name='group_by_dept'),
 ]

@@ -11,16 +11,32 @@
 
 {% block body %}
 <!--background image change options-->
+
+  <div class="d-flex justify-content-center"><div class="alert alert-info success-dismissible fade show" role="success">
+    <strong>Assalamualaikum! </strong> 
+    <strong> Welcome to our dashboard in gomaruf.com, For 24/7 days hotline: +8801707999438 </strong> 
+    <button type="button" class="close" data-dismiss="alert" aria-label="close">
+        <span aria-hidden="true"></span>
+    </button>
+  </div></div>
+
+
+
+
     <section class="section first-section" style="background-image: linear-gradient(rgba(0,0,0,0.2),rgba(0,0,0,0.2)), url('{% static 'img/login_bg.jpg'%}');">
         <div class="banner-div">
+            
             <div class="container-d">
             <!--<h1 class="banner-text">I'm Maruf</h1>-->
             <h1>I'm, <span class="element"></span></h1>
             
             </div>
         </div>
-            
+            <div>
+                
+            </div>
         <div class="search-flight">
+            
             <div class="container">
             <form class="search-flight-form" action="{% url 'flight' %}" onsubmit="return flight_search()">
                 <div class="align-items-center">
